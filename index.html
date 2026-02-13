@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Per Te ❤️</title>
+        <style>
+            :root {
+                --pastel-pink: #ffd6e8;
+                --pastel-lavender: #e6d7ff;
+                --pastel-blue: #d4e7ff;
+                --pastel-peach: #ffe4d6;
+                --pastel-mint: #d6f5e8;
+                --text-dark: #5a4a5e;
+                --text-light: #8b7e91;
+                --white: #ffffff;
+                --shadow: rgba(90, 74, 94, 0.1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                background: linear-gradient(
+                    135deg,
+                    var(--pastel-blue) 0%,
+                    var(--pastel-lavender) 50%,
+                    var(--pastel-pink) 100%
+                );
+                min-height: 100vh;
+                color: var(--text-dark);
+                overflow-x: hidden;
+            }
+
+            .heart-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            .heart {
+                position: absolute;
+                font-size: 20px;
+                opacity: 0;
+                animation: floatHeart 6s ease-in infinite;
+            }
+
+            @keyframes floatHeart {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.6;
+                }
+                90% {
+                    opacity: 0.6;
+                }
+                100% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+
+            .container {
+                position: relative;
+                z-index: 2;
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+
+            header {
+                text-align: center;
+                padding: 3rem 0;
+                animation: fadeInDown 1s ease;
+            }
+
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            h1 {
+                font-size: 3.5rem;
+                font-weight: 300;
+                margin-bottom: 1rem;
+                -webkit-background-clip: text;
+                background-clip: text;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+                color: var(--text-light);
+                font-weight: 300;
+            }
+
+            .section {
+                background: var(--white);
+                border-radius: 24px;
+                padding: 2.5rem;
+                margin: 2rem 0;
+                box-shadow: 0 10px 40px var(--shadow);
+                animation: fadeInUp 1s ease;
+                animation-fill-mode: both;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .section:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            .section:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            .section:nth-child(4) {
+                animation-delay: 0.6s;
+            }
+            .section:nth-child(5) {
+                animation-delay: 0.8s;
+            }
+
+            h2 {
+                font-size: 2rem;
+                font-weight: 400;
+                margin-bottom: 1.5rem;
+                color: var(--text-dark);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .timeline {
+                position: relative;
+                padding-left: 2rem;
+            }
+
+            .timeline::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: linear-gradient(
+                    to bottom,
+                    var(--pastel-pink),
+                    var(--pastel-lavender)
+                );
+            }
+
+            .timeline-item {
+                position: relative;
+                margin-bottom: 2rem;
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item::before {
+                content: "❤️";
+                position: absolute;
+                left: -2.2rem;
+                top: 0;
+                width: 30px;
+                height: 30px;
+                background: var(--white);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .timeline-date {
+                font-weight: 500;
+                color: var(--pastel-lavender);
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-content {
+                color: var(--text-light);
+                line-height: 1.6;
+            }
+
+            .polaroid-gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                margin-top: 1.5rem;
+                padding: 1rem;
+            }
+
+            .polaroid {
+                background: var(--white);
+                padding: 15px;
+                padding-bottom: 40px;
+                border-radius: 3px;
+                box-shadow:
+                    0 4px 8px rgba(0, 0, 0, 0.1),
+                    0 10px 30px rgba(0, 0, 0, 0.15);
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                cursor: pointer;
+                position: relative;
+            }
+
+            .polaroid:nth-child(1) {
+                transform: rotate(-4deg);
+            }
+
+            .polaroid:nth-child(2) {
+                transform: rotate(3deg);
+            }
+
+            .polaroid:nth-child(3) {
+                transform: rotate(-2deg) translateY(10px);
+            }
+
+            .polaroid:nth-child(4) {
+                transform: rotate(5deg);
+            }
+
+            .polaroid:nth-child(5) {
+                transform: rotate(-3deg) translateY(5px);
+            }
+
+            .polaroid:nth-child(6) {
+                transform: rotate(4deg) translateY(-5px);
+            }
+
+            .polaroid:hover {
+                transform: rotate(0deg) scale(1.08) translateY(-10px);
+                z-index: 10;
+                box-shadow:
+                    0 10px 20px rgba(0, 0, 0, 0.2),
+                    0 20px 50px rgba(0, 0, 0, 0.25);
+            }
+
+            .polaroid img {
+                width: 100%;
+                height: 220px;
+                object-fit: cover;
+                display: block;
+                border-radius: 2px;
+            }
+
+            .polaroid-caption {
+                margin-top: 12px;
+                text-align: center;
+                font-size: 0.95rem;
+                color: var(--text-dark);
+                font-family: "Courier New", monospace;
+                font-weight: 500;
+            }
+
+            .love-letter {
+                background: linear-gradient(
+                    135deg,
+                    var(--pastel-peach),
+                    var(--pastel-pink)
+                );
+                padding: 2rem;
+                border-radius: 16px;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: var(--text-dark);
+                font-style: italic;
+            }
+
+            .reasons-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .reason-card {
+                background: linear-gradient(
+                    135deg,
+                    var(--pastel-lavender),
+                    var(--pastel-blue)
+                );
+                padding: 1.5rem;
+                border-radius: 16px;
+                text-align: center;
+                transition: transform 0.3s ease;
+            }
+
+            .reason-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .reason-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .reason-text {
+                font-size: 1rem;
+                color: var(--text-dark);
+            }
+
+            .surprise-button {
+                background: linear-gradient(
+                    135deg,
+                    var(--pastel-pink),
+                    var(--pastel-lavender)
+                );
+                border: none;
+                padding: 1.2rem 3rem;
+                border-radius: 50px;
+                font-size: 1.2rem;
+                color: var(--text-dark);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 20px var(--shadow);
+                display: block;
+                margin: 2rem auto;
+                font-weight: 500;
+            }
+
+            .surprise-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 30px var(--shadow);
+            }
+
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .modal.active {
+                display: flex;
+            }
+
+            .modal-content {
+                background: var(--white);
+                padding: 3rem;
+                border-radius: 24px;
+                max-width: 500px;
+                text-align: center;
+                animation: modalPop 0.5s ease;
+            }
+
+            @keyframes modalPop {
+                0% {
+                    transform: scale(0.5);
+                    opacity: 0;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            .modal-content h3 {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: var(--text-dark);
+            }
+
+            .modal-content p {
+                font-size: 1.2rem;
+                color: var(--text-light);
+                line-height: 1.6;
+            }
+
+            .close-modal {
+                background: var(--pastel-pink);
+                border: none;
+                padding: 0.8rem 2rem;
+                border-radius: 50px;
+                margin-top: 2rem;
+                cursor: pointer;
+                font-size: 1rem;
+                color: var(--text-dark);
+            }
+
+            footer {
+                text-align: center;
+                padding: 3rem 0;
+                color: var(--text-light);
+                font-size: 0.9rem;
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2.5rem;
+                }
+
+                .section {
+                    padding: 1.5rem;
+                }
+
+                .reasons-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="heart-container" id="heartContainer"></div>
+
+        <div class="container">
+            <header>
+                <h1>Per Te ❤️</h1>
+                <p class="subtitle">
+                    Un piccolo angolo digitale per ricordarti quanto sei
+                    speciale
+                </p>
+            </header>
+
+            <div class="section">
+                <h2>🎵 La Nostra Canzone</h2>
+                <div style="text-align: center">
+                    <p
+                        style="
+                            color: var(--text-light);
+                            margin-bottom: 1.5rem;
+                            font-size: 1.1rem;
+                        "
+                    >
+                        Una melodia che ci accompagna... 💕
+                    </p>
+                    <div
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                var(--pastel-lavender),
+                                var(--pastel-pink)
+                            );
+                            padding: 2rem;
+                            border-radius: 16px;
+                            max-width: 600px;
+                            margin: 0 auto;
+                        "
+                    >
+                        <iframe
+                            style="border-radius: 12px"
+                            src="https://open.spotify.com/embed/track/0gkV0FyCdrJqwyrFW7NsEQ?utm_source=generator"
+                            width="100%"
+                            height="152"
+                            frameborder="0"
+                            allowfullscreen=""
+                            allow="
+                                autoplay;
+                                clipboard-write;
+                                encrypted-media;
+                                fullscreen;
+                                picture-in-picture;
+                            "
+                            loading="lazy"
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>💝 Perché Ti Amo</h2>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="reason-icon">😊</div>
+                        <div class="reason-text">
+                            Il tuo sorriso illumina le mie giornate
+                        </div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">🌟</div>
+                        <div class="reason-text">
+                            Sei la prima cosa che penso al mattino e l'ultima
+                            prima di dormire
+                        </div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">🌈</div>
+                        <div class="reason-text">Le giornate con te volano</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-icon">✨</div>
+                        <div class="reason-text">Sei tutto per me</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>📸 I Nostri Momenti</h2>
+                <div class="polaroid-gallery">
+                    <div class="polaroid">
+                        <img src="./foto/foto1.jpg" alt="Momento 1" />
+                        <div class="polaroid-caption"></div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="./foto/foto2.jpg" alt="Momento 2" />
+                        <div class="polaroid-caption"></div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="./foto/foto3.jpg" alt="Momento 3" />
+                        <div class="polaroid-caption"></div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="./foto/foto4.jpg" alt="Momento 4" />
+                        <div class="polaroid-caption"></div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="./foto/foto5.jpg" alt="Momento 5" />
+                        <div class="polaroid-caption"></div>
+                    </div>
+                    <div class="polaroid">
+                        <img src="./foto/foto6.jpg" alt="Momento 6" />
+                        <div class="polaroid-caption"></div>
+                    </div>
+                </div>
+                <p
+                    style="
+                        text-align: center;
+                        margin-top: 1.5rem;
+                        color: var(--text-light);
+                        font-size: 0.9rem;
+                    "
+                ></p>
+            </div>
+
+            <div class="section">
+                <h2>💌 Una Lettera Per Te</h2>
+                <div class="love-letter">
+                    <p>Amore mio,</p>
+                    <p style="margin-top: 1rem">
+                        Non sono capace di esprimere a parole tutto quello che
+                        sento, e probabilmete farà schifo ma ci provo. Senza di
+                        te io non so se sarei quello che sono, mi rendi una
+                        persona migliore ogni giorno, ti sono grato che
+                        nonostante io sia un gran rompicoglioni, stai al mio
+                        fianco e mi aiuti nei momenti dove ho bisogno di te. Sei
+                        tutto per me e non riuscirei a pensare a un futuro senza
+                        di te, tutto quello che faccio e farò è solo per creare
+                        un futuro insieme, te lo prometto che ci riuscirò.
+                    </p>
+                    <p style="margin-top: 1rem">
+                        Grazie per essere esattamente come sei, per rendermi una
+                        persona migliore, per condividere con me sogni, risate e
+                        anche i momenti difficili. Con te ho trovato casa.
+                    </p>
+                    <p style="margin-top: 1rem">
+                        Ti amo oggi, domani e per sempre.
+                    </p>
+                    <p style="margin-top: 1.5rem; text-align: right">
+                        Il tuo Mattia ❤️
+                    </p>
+                </div>
+            </div>
+
+            <button class="surprise-button" onclick="openSurprise()">
+                Clicca Per Una Sorpresa 🎁
+            </button>
+        </div>
+
+        <div class="modal" id="surpriseModal">
+            <div class="modal-content">
+                <h3>💌 Bonifico Ricevuto!</h3>
+                <div
+                    style="
+                        background: linear-gradient(
+                            135deg,
+                            var(--pastel-peach),
+                            var(--pastel-pink)
+                        );
+                        padding: 2rem;
+                        border-radius: 16px;
+                        margin: 1rem 0;
+                        text-align: left;
+                    "
+                >
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                            padding-bottom: 0.5rem;
+                            border-bottom: 2px dashed var(--text-dark);
+                        "
+                    >
+                        <span style="font-weight: 500">Da:</span>
+                        <span>Il Tuo Amore 💕</span>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                            padding-bottom: 0.5rem;
+                            border-bottom: 2px dashed var(--text-dark);
+                        "
+                    >
+                        <span style="font-weight: 500">A:</span>
+                        <span>La Mia Sbu ❤️</span>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                            padding-bottom: 0.5rem;
+                            border-bottom: 2px dashed var(--text-dark);
+                        "
+                    >
+                        <span style="font-weight: 500">Importo:</span>
+                        <span
+                            style="
+                                font-size: 1.5rem;
+                                font-weight: 600;
+                                color: var(--text-dark);
+                            "
+                            >500 BACI 💋</span
+                        >
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                            padding-bottom: 0.5rem;
+                            border-bottom: 2px dashed var(--text-dark);
+                        "
+                    >
+                        <span style="font-weight: 500">Data:</span>
+                        <span>14 Febbraio 2026</span>
+                    </div>
+                    <div
+                        style="
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 1rem;
+                        "
+                    >
+                        <span style="font-weight: 500">Causale: </span>
+                        <span style="font-style: italic"
+                            >"Perché ti amo infinitamente"</span
+                        >
+                    </div>
+                    <div
+                        style="
+                            text-align: center;
+                            margin-top: 1.5rem;
+                            padding-top: 1rem;
+                            border-top: 2px solid var(--text-dark);
+                        "
+                    >
+                        <p
+                            style="
+                                font-size: 0.9rem;
+                                color: var(--text-dark);
+                                font-weight: 500;
+                            "
+                        >
+                            ✅ TRANSAZIONE APPROVATA
+                        </p>
+                        <p
+                            style="
+                                font-size: 0.85rem;
+                                color: var(--text-light);
+                                margin-top: 0.5rem;
+                            "
+                        >
+                            Riscattabili in qualsiasi momento! 😘
+                        </p>
+                    </div>
+                </div>
+                <button class="close-modal" onclick="closeSurprise()">
+                    Chiudi 💕
+                </button>
+            </div>
+        </div>
+
+        <script>
+            // Cuori animati che cadono
+            function createHeart() {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "%";
+                heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+                heart.style.animationDelay = Math.random() * 2 + "s";
+                document.getElementById("heartContainer").appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 8000);
+            }
+
+            // Genera cuori continuamente
+            setInterval(createHeart, 800);
+
+            // Modal sorpresa
+            function openSurprise() {
+                document
+                    .getElementById("surpriseModal")
+                    .classList.add("active");
+
+                // Crea esplosione di cuori
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(createHeart, i * 100);
+                }
+            }
+
+            function closeSurprise() {
+                document
+                    .getElementById("surpriseModal")
+                    .classList.remove("active");
+            }
+
+            // Chiudi modal cliccando fuori
+            document
+                .getElementById("surpriseModal")
+                .addEventListener("click", function (e) {
+                    if (e.target === this) {
+                        closeSurprise();
+                    }
+                });
+
+            // Aggiungi interazione alle Polaroid
+            document.querySelectorAll(".polaroid").forEach((item) => {
+                item.addEventListener("click", function () {
+                    const currentTransform =
+                        window.getComputedStyle(this).transform;
+                    this.style.transform = "scale(1.15) rotate(0deg)";
+                    setTimeout(() => {
+                        this.style.transform = "";
+                    }, 400);
+                });
+            });
+        </script>
+    </body>
+</html>
